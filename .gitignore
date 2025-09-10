@@ -1,2 +1,4 @@
 venv
 .env
+
+Network_Data/*.csv
