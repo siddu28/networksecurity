@@ -8,10 +8,11 @@ on:
       - 'README.md'
 
 
+
 jobs:
   integration:
     name: Continuous Integration
-    runs-on: ubantu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
