@@ -22,6 +22,9 @@ from sklearn.ensemble import (
     RandomForestClassifier
 )
 import mlflow
+import dagshub
+dagshub.init(repo_owner='siddukasam28', repo_name='networksecurity', mlflow=True)
+
 
 
 
@@ -44,7 +47,9 @@ class ModelTrainer:
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("precision_score",precision_score)
             mlflow.log_metric("Recall_score",recall_score)
-            mlflow.sklearn.log_model(best_model,"model")
+
+            mlflow.log_artifact("final_models/model.pkl")
+            mlflow.log_artifact("final_models/preprocessing.pkl")
 
 
         
@@ -99,14 +104,10 @@ class ModelTrainer:
 
         classification_train_metric = get_classification_score(y_train,y_train_pred)
 
-        ## Track experiments with MLflow
-        self.track_mlflow(best_model,classification_train_metric)
-
 
 
         classification_test_metric = get_classification_score(y_test,y_test_pred)
-        ## MLflow with test
-        self.track_mlflow(best_model,classification_test_metric)
+
 
         preprocessor = load_object(self.data_transformation_artifact.transformed_object_file_path)
 
@@ -118,12 +119,19 @@ class ModelTrainer:
 
         save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
 
+        save_object("final_models/model.pkl",best_model)
+
         ## model trainer artifact
         model_trainer_artifact = ModelTrainerArtifact(
             training_model_file_path=self.model_trainer_config.trained_model_file_path,train_metric_artifact=classification_train_metric,test_metric_artifact=classification_test_metric,
             )
         logging.info(f"Model trainer artifact: {model_trainer_artifact}")
 
+        ## Track experiments with MLflow
+        self.track_mlflow(best_model,classification_train_metric)
+
+        ## MLflow with test
+        self.track_mlflow(best_model,classification_test_metric)
 
         return model_trainer_artifact
 
