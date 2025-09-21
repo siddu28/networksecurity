@@ -25,7 +25,6 @@ jobs:
 
 
 
-
   build-and-push-dockerhub:
     name: Continuous Delivery to Docker Hub
     needs: integration
