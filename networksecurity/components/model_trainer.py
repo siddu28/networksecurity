@@ -23,7 +23,7 @@ from sklearn.ensemble import (
 )
 import mlflow
 import dagshub
-dagshub.init(repo_owner='siddukasam28', repo_name='networksecurity', mlflow=True,token=os.getenv("DAGSHUB_TOKEN"))
+dagshub.init(repo_owner='siddukasam28', repo_name='networksecurity', mlflow=True)
 
 
 
