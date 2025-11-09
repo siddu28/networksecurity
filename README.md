@@ -144,8 +144,8 @@ If the model meets the threshold, it is saved as model.pkl.
 
 6. ➡️ Model Pusher & Deployment
 - Once a model is accepted, it is pushed to a central location for deployment.
-- Process: The Model Pusher Component takes the accepted model artifacts and pushes them to a production location, such as a cloud bucket on AWS or Azure.
+- Process: The Model Pusher Component takes the accepted model artifacts and pushes them to a production location AWS S3 bucket
 - CI/CD Deployment:
 The entire "Network Security" application (including the API) is containerized into a Docker Image.
 This image is pushed to AWS ECR (Elastic Container Registry).
-- A GitHub Actions CI/CD pipeline automatically detects this new image, pulls it, and deploys it to a service like AWS EC2 or App Runner, making the new model available to users.
+- A GitHub Actions CI/CD pipeline automatically detects this new image, pulls it, and deploys it to a service AWS EC2 , making the new model available to users.
