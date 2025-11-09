@@ -149,3 +149,56 @@ If the model meets the threshold, it is saved as model.pkl.
 The entire "Network Security" application (including the API) is containerized into a Docker Image.
 This image is pushed to AWS ECR (Elastic Container Registry).
 - A GitHub Actions CI/CD pipeline automatically detects this new image, pulls it, and deploys it to a service AWS EC2 , making the new model available to users.
+
+
+## SetUp Instructions:
+
+1. Clone the Repository:
+
+```
+git clone https://github.com/siddu28/networksecurity.git
+```
+
+2. Create and Activate a Virtual Environment:
+
+```
+# Create the virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+
+# On macOS/Linux:
+source venv/bin/activate
+```
+
+3. Install Dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+4. Set Up Environment Variables:
+
+- Add the following to your .env file:
+
+```
+MONGODB_URL="your_mongodb_connection_string"
+AWS_ACCESS_KEY_ID="your_aws_access_key"
+AWS_SECRET_ACCESS_KEY="your_aws_secret_key"
+AWS_REGION="your_aws_region"
+```
+
+🚀 Running the Project:
+
+```
+python app.py
+```
+
+or
+
+```
+uvicorn app:app --reload
+```
+
