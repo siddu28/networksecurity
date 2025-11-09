@@ -1,4 +1,6 @@
 ### Network Security Project
+🚀 MLOps Pipeline Workflow
+This project is built as an end-to-end MLOps pipeline that automates data ingestion, validation, transformation, model training, and deployment. Each stage is a distinct component that creates artifacts used by the next step
 
 #### Project Structure
 
@@ -67,3 +69,15 @@
 └── valid_data
     └── test.csv
 ```
+
+## Steps followed during this project:
+
+1. 📥 Data Ingestion
+- The pipeline begins by extracting data from the source.
+- Source: Data is pulled from a MongoDB database.
+- Process:
+The Data Ingestion Component exports the specified collection to a "feature store" as a raw CSV file.
+Based on a provided schema, unnecessary columns are dropped.
+The cleaned data is then split into train.csv and test.csv files.
+
+- Output: A Data Ingestion Artifact  is created, which contains the paths to the raw train.csv and test.csv files.
