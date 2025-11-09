@@ -76,7 +76,7 @@ This project is built as an end-to-end MLOps pipeline that automates data ingest
 
 ## Steps followed during this project:
 
-1. 📥 Data Ingestion
+1. ### 📥 Data Ingestion
 - The pipeline begins by extracting data from the source.
 - Source: Data is pulled from a MongoDB database.
 - Process:
@@ -91,7 +91,7 @@ The cleaned data is then split into train.csv and test.csv files.
 
 
 
-2. ✅ Data Validation
+2. ### ✅ Data Validation
 - This step ensures the quality and integrity of the ingested data before any processing.
 - Input: The Data Ingestion Artifact (the train.csv and test.csv files).
 - Process:
@@ -104,7 +104,7 @@ Data Drift Detection: It checks for significant changes in the data's distributi
 <img width="1331" height="835" alt="Image" src="https://github.com/user-attachments/assets/9786b402-522f-4913-9bd8-0e20f5bc250e" />
 
 
-3. 🛠️ Data Transformation
+3. ### 🛠️ Data Transformation
 - Once validated, the raw data is preprocessed and made ready for model training.
 - Input: The validated train.csv and test.csv files from the Data Validation Artifact.
 - Process:
@@ -119,7 +119,7 @@ This pipeline is fit-transformed on the training data and transformed on the tes
 <img width="1039" height="858" alt="Image" src="https://github.com/user-attachments/assets/481553e8-e18a-4f1f-969d-7c45035c6904" />
 
 
-4. 🧠 Model Trainer
+4. ### 🧠 Model Trainer
 - This component uses the preprocessed data to train and select the best-performing model.
 - Input: The Data Transformation Artifact (specifically the train.npy and test.npy arrays).
 - Process:
@@ -134,7 +134,7 @@ If the model meets the threshold, it is saved as model.pkl.
 <img width="886" height="869" alt="Image" src="https://github.com/user-attachments/assets/5b28cd7d-d3ba-49c7-bf4a-5cc2520cef75" />
 
 
-5. 📈 Model Evaluation
+5. ### 📈 Model Evaluation
 - The newly trained model is now compared against the model that is currently in production (if one exists).
 - Input: The Model Trainer Artifact.
 - Process: The Model Evaluation Component  assesses the new model. If its performance is better than the production model (or meets the acceptance criteria), it is marked as Model Accepted.
@@ -142,7 +142,7 @@ If the model meets the threshold, it is saved as model.pkl.
 - Output: If "Yes", the pipeline proceeds to the final step. If "No", the pipeline stops, and the old model remains in production.
 
 
-6. ➡️ Model Pusher & Deployment
+6. ### ➡️ Model Pusher & Deployment
 - Once a model is accepted, it is pushed to a central location for deployment.
 - Process: The Model Pusher Component takes the accepted model artifacts and pushes them to a production location AWS S3 bucket
 - CI/CD Deployment:
